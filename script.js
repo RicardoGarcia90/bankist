@@ -248,6 +248,7 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
+    document.querySelector('.pageContainer').style.display = 'none';
 
     /* ---- DATA QUE APARECE QUANDO LOGAR ---- */
     ///////////////////////////////////////
