@@ -87,14 +87,14 @@ nav {
 .app {
   position: relative;
   max-width: 100rem;
-  margin: 4rem auto;
-  display: grid;
+  margin: 1rem auto;
+  display: none;
   grid-template-columns: 4fr 3fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
-  gap: 2rem;
+  gap: 1rem;
 
   /* NOTE This creates the fade in/out anumation */
-  opacity: 0;
+  /* opacity: 0; */
   transition: all 1s;
 }
 
@@ -407,6 +407,7 @@ img {
 .nav.sticky {
   position: fixed;
   background-color: rgba(255, 255, 255, 0.95);
+  margin-top: -2rem;
 }
 
 .nav__logo {
@@ -823,6 +824,10 @@ h4 {
 .section--sign-up .btn {
   font-size: 1.9rem;
   padding: 2rem 5rem;
+}
+
+.btn--show-modal2 {
+  margin-left: 50rem;
 }
 
 /* FOOTER */
