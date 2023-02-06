@@ -83,6 +83,21 @@ nav {
   color: #777;
 }
 
+.link-logout:link,
+.link-logout:visited {
+  display: none;
+  text-decoration: none;
+  width: 5rem;
+  font-size: 1.4rem;
+  color: red;
+}
+
+.link-logout:hover,
+.link-logout:active {
+  color: #222;
+  text-decoration: underline;
+  cursor: pointer;
+}
 /* MAIN */
 .app {
   position: relative;
@@ -154,11 +169,11 @@ nav {
   color: #666;
 }
 
-.movements__type--deposit {
+.movements__type--deposito {
   background-image: linear-gradient(to top left, #39b385, #9be15d);
 }
 
-.movements__type--withdrawal {
+.movements__type--retirada {
   background-image: linear-gradient(to top left, #e52a5a, #ff585f);
 }
 

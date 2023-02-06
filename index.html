@@ -9,6 +9,7 @@
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
       rel="stylesheet"
+      pageContainer
     />
 
     <link rel="stylesheet" href="style.css" />
@@ -17,6 +18,7 @@
   <body>
     <!-- TOP NAVIGATION -->
     <p class="welcome"></p>
+    <a class="link-logout" href="#">Logout</a>
     <div class="pageContainer">
       <header class="header">
         <nav class="nav">
@@ -378,12 +380,12 @@
 
       <div class="balance">
         <div>
-          <p class="balance__label">Current balance</p>
+          <p class="balance__label">Saldo Atual</p>
           <p class="balance__date">
-            As of <span class="date">05/03/2037</span>
+            <span class="date">05/03/2037</span>
           </p>
         </div>
-        <p class="balance__value">0000€</p>
+        <p class="balance__value">R$0000</p>
       </div>
 
       <!-- MOVEMENTS -->
@@ -404,40 +406,39 @@
 
       <!-- SUMMARY -->
       <div class="summary">
-        <p class="summary__label">In</p>
+        <p class="summary__label">Entradas</p>
         <p class="summary__value summary__value--in">0000€</p>
-        <p class="summary__label">Out</p>
+        <p class="summary__label">Saídas</p>
         <p class="summary__value summary__value--out">0000€</p>
-        <p class="summary__label">Interest</p>
+        <p class="summary__label">Rendimento</p>
         <p class="summary__value summary__value--interest">0000€</p>
-        <button class="btn--sort">&downarrow; SORT</button>
       </div>
 
       <!-- OPERATION: TRANSFERS -->
       <div class="operation operation--transfer">
-        <h2>Transfer money</h2>
+        <h2>Transferência</h2>
         <form class="form form--transfer">
           <input type="text" class="form__input form__input--to" />
           <input type="number" class="form__input form__input--amount" />
           <button class="form__btn form__btn--transfer">&rarr;</button>
-          <label class="form__label">Transfer to</label>
-          <label class="form__label">Amount</label>
+          <label class="form__label">Transferir para:</label>
+          <label class="form__label">Valor</label>
         </form>
       </div>
 
       <!-- OPERATION: LOAN -->
       <div class="operation operation--loan">
-        <h2>Request loan</h2>
+        <h2>Empréstimo</h2>
         <form class="form form--loan">
           <input type="number" class="form__input form__input--loan-amount" />
           <button class="form__btn form__btn--loan">&rarr;</button>
-          <label class="form__label form__label--loan">Amount</label>
+          <label class="form__label form__label--loan">Valor</label>
         </form>
       </div>
 
       <!-- OPERATION: CLOSE -->
       <div class="operation operation--close">
-        <h2>Close account</h2>
+        <h2>Fechar Conta</h2>
         <form class="form form--close">
           <input type="text" class="form__input form__input--user" />
           <input
@@ -446,14 +447,14 @@
             class="form__input form__input--pin"
           />
           <button class="form__btn form__btn--close">&rarr;</button>
-          <label class="form__label">Confirm user</label>
-          <label class="form__label">Confirm PIN</label>
+          <label class="form__label">Confirmar usuário</label>
+          <label class="form__label">Confirmar senha</label>
         </form>
       </div>
 
       <!-- LOGOUT TIMER -->
       <p class="logout-timer">
-        You will be logged out in <span class="timer">05:00</span>
+        Você será desconectado em: <span class="timer">05:00</span>
       </p>
     </main>
 

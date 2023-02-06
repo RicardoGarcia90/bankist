@@ -10,7 +10,7 @@
 // DIFFERENT DATA! Contains movement dates, currency and locale
 
 const account1 = {
-  owner: 'Jonas Schmedtmann',
+  owner: 'João Soarez',
   movements: [200, 455.23, -306.5, 25000, -642.21, -133.9, 79.97, 1300],
   interestRate: 1.2, // %
   pin: 1111,
@@ -25,8 +25,8 @@ const account1 = {
     '2022-03-16T23:36:17.929Z',
     '2022-08-01T10:51:36.790Z',
   ],
-  currency: 'EUR',
-  locale: 'pt-PT', // de-DE
+  currency: 'BRL',
+  locale: 'pt-BR', // de-DE
 };
 
 const account2 = {
@@ -45,8 +45,8 @@ const account2 = {
     '2020-06-25T18:49:59.371Z',
     '2020-07-26T12:01:20.894Z',
   ],
-  currency: 'USD',
-  locale: 'en-US',
+  currency: 'BRL',
+  locale: 'pt-BR',
 };
 
 const accounts = [account1, account2];
@@ -65,6 +65,7 @@ const containerApp = document.querySelector('.app');
 const containerMovements = document.querySelector('.movements');
 
 const btnLogin = document.querySelector('.login__btn');
+const btnLogout = document.querySelector('.link-logout');
 const btnTransfer = document.querySelector('.form__btn--transfer');
 const btnLoan = document.querySelector('.form__btn--loan');
 const btnClose = document.querySelector('.form__btn--close');
@@ -88,9 +89,9 @@ const formatMovementDate = function (date, locale) {
   const daysPassed = calcDaysPassed(new Date(), date);
   // console.log(daysPassed);
 
-  if (daysPassed === 0) return 'Today';
-  if (daysPassed === 1) return 'Yesterday';
-  if (daysPassed <= 7) return `${daysPassed} days ago`;
+  if (daysPassed === 0) return 'Hoje';
+  if (daysPassed === 1) return 'Ontem';
+  if (daysPassed <= 7) return `${daysPassed} dias atrás`;
   /*  else {
     const day = `${date.getDate()}`.padStart(2, 0);
     const month = `${date.getMonth() + 1}`.padStart(2, 0);
@@ -108,15 +109,16 @@ const formatCur = function (value, locale, currency) {
   }).format(value);
 };
 
-const displayMovements = function (acc, sort = false) {
+const displayMovements = function (acc, sort) {
   containerMovements.innerHTML = '';
+  console.log(acc.movements);
 
   const movs = sort
     ? acc.movements.slice().sort((a, b) => a - b)
     : acc.movements;
 
   movs.forEach(function (mov, i) {
-    const type = mov > 0 ? 'deposit' : 'withdrawal';
+    const type = mov > 0 ? 'deposito' : 'retirada';
 
     const date = new Date(acc.movementsDates[i]);
     const displayDate = formatMovementDate(date, acc.locale);
@@ -204,8 +206,9 @@ const startLogOutTimer = function () {
     // Whhen 0 seconds, stop timer and log out user
     if (time === 0) {
       clearInterval(timer);
-      labelWelcome.textContent = `Log in to get started`;
-      containerApp.style.opacity = 0;
+      labelWelcome.textContent = `Faça login para começar`;
+      containerApp.style.display = 'none';
+      document.querySelector('.pageContainer').style.display = 'block';
     }
 
     // Decrese 1s
@@ -213,7 +216,7 @@ const startLogOutTimer = function () {
   };
 
   // Set time to 5 minutes
-  let time = 120;
+  let time = 600;
 
   // Call the timer every second
   tick();
@@ -244,11 +247,12 @@ btnLogin.addEventListener('click', function (e) {
 
   if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and message
-    labelWelcome.textContent = `Welcome back, ${
+    labelWelcome.textContent = `Bem vindo, ${
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.display = 'grid';
     document.querySelector('.pageContainer').style.display = 'none';
+    btnLogout.style.display = 'block';
 
     /* ---- DATA QUE APARECE QUANDO LOGAR ---- */
     ///////////////////////////////////////
@@ -372,23 +376,29 @@ btnClose.addEventListener('click', function (e) {
     accounts.splice(index, 1);
 
     // Hide UI
-    containerApp.style.opacity = 0;
+    labelWelcome.textContent = `Sua conta foi excluída, você será direcionado a página inicial!`;
+    labelWelcome.style.margin = '20rem 45rem';
+    labelWelcome.style.width = '60rem';
+    btnLogout.style.display = 'none';
+    containerApp.style.display = 'none';
+
+    setTimeout(reset, 4000);
+    function reset() {
+      location.reload();
+    }
   }
 
   inputCloseUsername.value = inputClosePin.value = '';
 });
 
-/* ---- BOTÃO CRESCENTE E DECRESCENTE ---- */
-let sorted = false;
-btnSort.addEventListener('click', function (e) {
+/* LOGOUT */
+btnLogout.addEventListener('click', function (e) {
   e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
-  sorted = !sorted;
+  location.reload();
 });
 
 /////////////////////////////////////////////////
 // PAGE
-('use strict');
 
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
